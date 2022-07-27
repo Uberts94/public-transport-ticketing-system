@@ -37,10 +37,15 @@ lab 4 project:
 
 ### Services
 
-| Service | Port |
-| --- | --- |
-| login-service | 8080 |
-| traveler-service | 8081 |
-| ticket-catalogue-service | 8082 |
-| payment-service | 8083 |
-| bank-service | 8084 |
+| Service                  | Port |
+|--------------------------|------|
+| login-service            | 8081 |
+| traveler-service         | 8082 |
+| ticket-catalogue-service | 8083 |
+| payment-service          | 8084 |
+| bank-service             | 8085 |
+| discovery-service        | 8761 |
+| gateway-service          | 8080 |
+| report-service           | 8086 |
+| transit-service          | 8087 |
+
