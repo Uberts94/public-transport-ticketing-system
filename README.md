@@ -29,6 +29,11 @@ lab 4 project:
 - `wa2-g12-ticket-catalogue-service`: Contains the catalogue service and the instructions to setup Apache Kafka.
 - `wa2-g12-payment-service`: Contains the payment service. It requires Kafka.
 - `wa2-g12-bank-service`: Contains the bank service, used to mock a real bank service. It requires Kafka.
+- `wa2-g12-discovery-service`: Contains the discovery service, based on SpringCloud Netflix Eureka.
+- `wa2-g12-gateway-service`: Contains the gateway service.
+- `wa2-g12-report-service`: Contains the report service, used to compute reports about tickets and transits. It requires Apache Kafka.
+- `wa2-g12-machine-service`: Contains the machine service, used to mock a real ticket QR Code reader.
+- `wa2-g12-transit-service`: Contains the transit service, used to verify the tickets validity and store information about transits
 
 ### Services
 
