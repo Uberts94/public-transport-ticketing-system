@@ -1,0 +1,77 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: login-service
+          uri: lb://login-service
+          predicates:
+            - Path=/user/**, /admin
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: login-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: traveler-service
+          uri: lb://traveler-service
+          predicates:
+            - Path=/admin/travelers, /admin/traveler/**, /my/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: traveler-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: catalogue-service
+          uri: lb://catalogue-service
+          predicates:
+            - Path=/tickets, /orders/**, /admin/orders/**, /admin/tickets/**, /shop
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: catalogue-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/product, /transactions, /admin/transactions
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: payment-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/admin/report/**, /admin/stats/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: report-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: transit-service
+          uri: lb://transit-service
+          predicates:
+            - Path=/admin/transits, /transits
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: transit-service-circuit-breaker
+                fallbackUri: forward:/fallback
+        - id: machine-mock
+          uri: lb://machine-mock
+          predicates:
+            - Path=/machine
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: machine-mock-circuit-breaker
+                fallbackUri: forward:/fallback
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
